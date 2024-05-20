@@ -4,13 +4,13 @@ import {MatIconModule} from '@angular/material/icon'
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-main-navbar',
   standalone: true,
   imports: [MatIconModule, RouterLink],
-  templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  templateUrl: './main-navbar.component.html',
+  styleUrl: './main-navbar.component.css'
 })
-export class NavbarComponent {
+export class MainNavbarComponent {
   authService = inject(AuthService)
   user = this.authService.user;
 
