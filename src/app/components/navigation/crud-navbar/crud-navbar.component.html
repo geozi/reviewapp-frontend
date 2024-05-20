@@ -4,16 +4,16 @@
   
       <div class="d-flex justify-content-start gap-2">
         <a
+        class="nav-link"
+        routerLink="/crud/get"
+        [routerLinkActive]="['active']">
+        Get
+      </a>
+        <a
           class="nav-link"
           routerLink="/crud/create"
           [routerLinkActive]="['active']">
           Create
-        </a>
-        <a
-          class="nav-link"
-          routerLink="/crud/get"
-          [routerLinkActive]="['active']">
-          Get
         </a>
         <a
           class="nav-link"

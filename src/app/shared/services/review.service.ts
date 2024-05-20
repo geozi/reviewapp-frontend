@@ -34,4 +34,14 @@ export class ReviewService {
     return this.http.post(url, review, httpOptions)
 
   }
+
+  getReviewsByUsername(username: string) {
+    const url = `${API_URL}/reviews-by-username?username=${username}`
+    return this.http.get(url, httpOptions)
+  }
+
+  deleteReviewById(id: string) {
+    const url = `${API_URL}/reviews/${id}`
+    return this.http.delete(url)
+  }
 }

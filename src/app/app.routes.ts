@@ -9,6 +9,7 @@ import { UpdateReviewComponent } from './components/crud/update-review/update-re
 import { GetReviewsComponent } from './components/crud/get-reviews/get-reviews.component';
 import { CrudNavbarComponent } from './components/navigation/crud-navbar/crud-navbar.component';
 import { authGuard } from './shared/guards/auth.guard';
+import { DataCardComponent } from './components/cards/data-card/data-card.component';
 
 export const routes: Routes = [
     {path:'register-form', component:RegisterFormComponent},
@@ -28,6 +29,7 @@ export const routes: Routes = [
     {path: 'crud/get', 
     component:GetReviewsComponent,
     canActivate:[authGuard]},
-    {path: 'crud-navbar', component:CrudNavbarComponent}
+    {path: 'crud-navbar', component:CrudNavbarComponent},
+    {path:'data-card', component:DataCardComponent}
 
 ];
