@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { Review } from 'src/app/shared/interfaces/review';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ReviewService } from 'src/app/shared/services/review.service';
+import { CrudNavbarComponent } from '../../navigation/crud-navbar/crud-navbar.component';
 
 @Component({
   selector: 'app-create-review',
@@ -14,7 +15,8 @@ import { ReviewService } from 'src/app/shared/services/review.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CrudNavbarComponent
   ],
   templateUrl: './create-review.component.html',
   styleUrl: './create-review.component.css'
@@ -22,6 +24,10 @@ import { ReviewService } from 'src/app/shared/services/review.service';
 export class CreateReviewComponent {
 
   reviewService = inject(ReviewService)
+  reviewCreationStatus: {success: boolean; message: string} = {
+    success: false,
+    message: 'Not attempted yet',
+  }
 
   form = new FormGroup({
     subject: new FormControl('', Validators.required),
@@ -33,11 +39,11 @@ export class CreateReviewComponent {
     console.log(review)
     this.reviewService.createReview(review).subscribe({
       next: (response) => {
-        this.form.reset();
-        alert('Review created!')
+        this.reviewCreationStatus = {success:true, message: "Review added"}
       },
-      error: (error) => {
-        console.error('Error:', error)
+      error: (response) => {
+        const message = response.error.message;
+        this.reviewCreationStatus = {success:false, message: message}
       }
     })
   }

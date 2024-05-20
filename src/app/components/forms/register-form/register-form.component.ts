@@ -53,13 +53,10 @@ export class RegisterFormComponent {
 
     this.userService.registerUser(user).subscribe({
       next: (response) => {
-
-        console.log(response)
         this.registrationStatus = {success:true, message:response.message}
       },
       error: (response) => {
         const message = response.error.message;
-        console.log(message);
         this.registrationStatus = {success:false, message: message}
       },
     });
