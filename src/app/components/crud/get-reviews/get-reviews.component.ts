@@ -38,7 +38,7 @@ export class GetReviewsComponent implements OnInit {
       console.log(this.data)
       },
       error: (response) => {
-        console.log(response.error.message)
+        console.log('No review items were found in the database.')
       }
     })
   }

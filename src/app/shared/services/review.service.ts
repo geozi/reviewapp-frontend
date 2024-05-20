@@ -42,6 +42,6 @@ export class ReviewService {
 
   deleteReviewById(id: string) {
     const url = `${API_URL}/reviews/${id}`
-    return this.http.delete(url)
+    return this.http.delete(url, httpOptions)
   }
 }
