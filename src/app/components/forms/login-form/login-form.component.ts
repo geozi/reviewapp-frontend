@@ -44,7 +44,7 @@ export class LoginFormComponent {
           username : decodedTokenSubject
         })
         
-        // this.router.navigate(['restricted-content-example'])
+        this.router.navigate(['/crud/get'])
         this.form.reset()
       },
       error: (response) => {
@@ -58,7 +58,5 @@ export class LoginFormComponent {
   onRegister() {
     this.router.navigate(['register-form'])
   }
-  
-  
 
 }
