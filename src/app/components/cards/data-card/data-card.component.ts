@@ -1,8 +1,8 @@
 import { Component, Input, inject } from '@angular/core';
-import { PersistedReviewItem } from 'src/app/shared/interfaces/persisted-review-item';
 import {MatCardModule} from '@angular/material/card'
 import {MatButtonModule} from '@angular/material/button'
 import { ReviewService } from 'src/app/shared/services/review.service';
+import { ReviewItem } from 'src/app/shared/interfaces/review-item';
 
 @Component({
   selector: 'app-data-card',
@@ -12,14 +12,15 @@ import { ReviewService } from 'src/app/shared/services/review.service';
   styleUrl: './data-card.component.css'
 })
 export class DataCardComponent {
-  @Input() data: PersistedReviewItem[];
+  @Input() data: ReviewItem[];
 
   reviewService = inject(ReviewService)
 
   deleteReviewItem(id: string){
     this.reviewService.deleteReviewById(id).subscribe({
       next: (response) => {
-        console.log('Review: ' + response + ' deleted')
+        const deletedReview = response as ReviewItem
+        console.log('Review: {subject: ' + deletedReview.subject + ', description: ' + deletedReview.description + '} deleted')
       },
       error: (response) => {
         console.log(response.error.message)

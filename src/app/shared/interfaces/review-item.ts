@@ -1,4 +1,4 @@
-export interface PersistedReviewItem {
+export interface ReviewItem {
     id: string;
     username: string;
     subject: string;

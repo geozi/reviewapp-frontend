@@ -10,14 +10,16 @@ export class TokenService {
     return localStorage.getItem("accessToken")
   }
 
-  isValid(accessToken : string) {
-
-    const currentTimestamp = Math.floor(Date.now() / 1000);
-    const expirationTimeStamp =jwtDecode(accessToken).exp as number
+  isValid(accessToken: string): boolean {
     
-    if(currentTimestamp < expirationTimeStamp) {
-      return true
+    if (!accessToken) {
+      return false;
     }
-    return false;
+  
+    const currentTimestamp = Math.floor(Date.now() / 1000);
+    const expirationTimeStamp = jwtDecode(accessToken).exp as number;
+  
+    return currentTimestamp < expirationTimeStamp;
   }
+  
 }
