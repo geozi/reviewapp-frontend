@@ -1,111 +1,87 @@
 <div>
-    <h4>User Registration</h4>
+  <h4>User Registration</h4>
 </div>
 
 <div>
-    @if(registrationStatus.message === "Not attempted yet") {
+  @if(registrationStatus.message === "Not attempted yet") {
 
-        <form [formGroup]="form" class="d-flex flex-column ">
-    
-            <mat-form-field>
-                <mat-label>
-                    Username
-                </mat-label>
-                <input 
-                type="text"
-                matInput
-                formControlName = "username"
-                />
-                @if(form.get('username').invalid && form.get('username').touched) {
-                    <mat-error>
-                        Username is required
-                    </mat-error>
-                }
-            </mat-form-field>
-        
-            <mat-form-field>
-                <mat-label>
-                    Email
-                </mat-label>
-                <input 
-                type="text"
-                matInput
-                formControlName = "email"
-                />
-                @if(form.get('email').invalid && form.get('email').touched) {
-                    <mat-error>
-                        Email is missing or invalid
-                    </mat-error>
-                }
-            </mat-form-field>
-        
-            <mat-form-field>
-                <mat-label>
-                    Password
-                </mat-label>
-                <input 
-                type="password"
-                matInput
-                formControlName = "password"
-                />
-                @if(form.get('password').invalid && form.get('password').touched) {
-                    <mat-error>
-                        Password is required
-                    </mat-error>
-                }
-            </mat-form-field>
-        
-            <mat-form-field>
-                <mat-label>
-                    Confirm password
-                </mat-label>
-                <input 
-                type="password"
-                matInput
-                formControlName = "confirmPassword"
-                />
-                @if(form.get('confirmPassword').hasError('passwordMismatch')) {
-                    <mat-error>
-                        Passwords do not match
-                    </mat-error>
-                } @else {
-        
-                    @if(form.get('confirmPassword').invalid && form.get('confirmPassword').touched) {
-                        <mat-error>
-                            Confirm Password is required
-                        </mat-error>
-                    }
-                }
-        
-            </mat-form-field>
-        
-            <button
-            mat-flat-button
-            color="primary"
-            [disabled]="form.invalid"
-            (click)="onSubmit(form.value)">
-            Register
-            </button>
-        
-        </form>
-    
-    } @else {
-        @if(registrationStatus.success) {
-            <div class="alert alert-success mt-2">
-                <strong>Success:</strong> {{registrationStatus.message}}
-            </div>
-        } @else {
-            <div class="alert alert-danger mt-2">
-                <strong>Error:</strong> {{registrationStatus.message}}
-            </div>
-        }
-    
-        <button
-        mat-flat-button
-        color="primary"
-        class="mt-2"
-        (click)="registerAnotherUser()"
-        >Register Another User</button>
-    }
+  <form
+    [formGroup]="form"
+    class="d-flex flex-column">
+    <mat-form-field>
+      <mat-label>Username</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="username" />
+      @if(form.get('username').invalid && form.get('username').touched) {
+      <mat-error>Username is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="email" />
+      @if(form.get('email').invalid && form.get('email').touched) {
+      <mat-error>Email is missing or invalid</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="password" />
+      @if(form.get('password').invalid && form.get('password').touched) {
+      <mat-error>Password is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Confirm password</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="confirmPassword" />
+      @if(form.get('confirmPassword').hasError('passwordMismatch')) {
+      <mat-error>Passwords do not match</mat-error>
+      } @else { @if(form.get('confirmPassword').invalid &&
+      form.get('confirmPassword').touched) {
+      <mat-error>Confirm Password is required</mat-error>
+      } }
+    </mat-form-field>
+
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="form.invalid"
+      (click)="onSubmit(form.value)">
+      Register
+    </button>
+  </form>
+
+  } @else { @if(registrationStatus.success) {
+  <div class="alert alert-success mt-2">
+    <strong>Success:</strong>
+    {{ registrationStatus.message }}
+  </div>
+  } @else {
+  <div class="alert alert-danger mt-2">
+    <strong>Error:</strong>
+    {{ registrationStatus.message }}
+  </div>
+  }
+
+  <button
+    mat-flat-button
+    color="primary"
+    class="mt-2"
+    (click)="registerAnotherUser()">
+    Register Another User
+  </button>
+  }
 </div>
-

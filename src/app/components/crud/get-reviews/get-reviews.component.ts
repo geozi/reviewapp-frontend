@@ -6,21 +6,24 @@ import { DataCardComponent } from '../../cards/data-card/data-card.component';
 import { TokenService } from 'src/app/shared/services/token.service';
 import { ReviewItem } from 'src/app/shared/interfaces/review-item';
 
+/**
+ * Component responsible for implementing the GET method for reviews.
+ * @author geozi
+ * @version 1
+ */
 @Component({
   selector: 'app-get-reviews',
   standalone: true,
   imports: [CrudNavbarComponent, DataCardComponent],
   templateUrl: './get-reviews.component.html',
-  styleUrl: './get-reviews.component.css'
+  styleUrl: './get-reviews.component.css',
 })
 export class GetReviewsComponent implements OnInit {
-
-  reviewService = inject(ReviewService)
-  tokenService = inject(TokenService)
+  reviewService = inject(ReviewService);
+  tokenService = inject(TokenService);
   data: any[] = [];
 
   ngOnInit(): void {
-
     this.reviewService.checkTokenValidity();
 
     const accessToken = this.tokenService.getToken();
@@ -28,22 +31,24 @@ export class GetReviewsComponent implements OnInit {
     this.refreshReviewItems(username);
   }
 
-  refreshReviewItems(username:string) {
+  /**
+   * Repeats the GET method for reviews.
+   * @param username The username of the user.
+   */
+  refreshReviewItems(username: string) {
     this.reviewService.getReviewsByUsername(username).subscribe({
       next: (response) => {
         const reviews = response as Array<ReviewItem>;
 
-       this.data = reviews.map((review) => ({
-        id: review.id,
-        subject: review.subject,
-        description: review.description,
-      }));
-
+        this.data = reviews.map((review) => ({
+          id: review.id,
+          subject: review.subject,
+          description: review.description,
+        }));
       },
       error: (response) => {
-        console.log('No review items were found in the database.')
-      }
-    })
+        console.log('No review items were found in the database.');
+      },
+    });
   }
-
 }

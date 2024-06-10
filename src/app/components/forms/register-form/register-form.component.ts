@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -7,20 +12,25 @@ import { UserService } from 'src/app/shared/services/user.service';
 import { User } from 'src/app/shared/interfaces/user';
 import { Role } from 'src/app/shared/interfaces/role';
 
+/**
+ * Register form component.
+ * @author geozi
+ * @version 1
+ */
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [ReactiveFormsModule,
+  imports: [
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './register-form.component.html',
-  styleUrl: './register-form.component.css'
+  styleUrl: './register-form.component.css',
 })
 export class RegisterFormComponent {
-
-  userService = inject(UserService)
+  userService = inject(UserService);
   registrationStatus: { success: boolean; message: string } = {
     success: false,
     message: 'Not attempted yet',
@@ -29,40 +39,55 @@ export class RegisterFormComponent {
   form = new FormGroup(
     {
       username: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')]),
-      password: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$'),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
     },
     this.passwordConfirmValidator
-  )
+  );
 
-  passwordConfirmValidator(form : FormGroup) {
-    if(form.get('password').value !== form.get('confirmPassword').value) {
-      form.get('confirmPassword').setErrors({passwordMismatch : true});
-      return {passwordMismatch : true}
+  passwordConfirmValidator(form: FormGroup) {
+    if (form.get('password').value !== form.get('confirmPassword').value) {
+      form.get('confirmPassword').setErrors({ passwordMismatch: true });
+      return { passwordMismatch: true };
     } else {
-      return {}
+      return {};
     }
   }
 
+  /**
+   * Called when the Register button is clicked.
+   * @param value The information of the user to be registered.
+   */
   onSubmit(value: any) {
-
     const user = value as User;
     user['role'] = Role.User;
-    delete user['confirmPassword']
+    delete user['confirmPassword'];
 
     this.userService.registerUser(user).subscribe({
       next: (response) => {
-        this.registrationStatus = {success:true, message:response.message}
+        this.registrationStatus = { success: true, message: response.message };
       },
       error: (response) => {
         const message = response.error.message;
-        this.registrationStatus = {success:false, message: message}
+        this.registrationStatus = { success: false, message: message };
       },
     });
-
   }
 
+  /**
+   * Clears the registration form when the Register
+   * Another User button is clicked.
+   */
   registerAnotherUser() {
     this.form.reset();
     this.registrationStatus = {
@@ -70,5 +95,4 @@ export class RegisterFormComponent {
       message: 'Not attempted yet',
     };
   }
-
 }
