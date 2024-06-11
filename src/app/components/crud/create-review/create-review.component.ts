@@ -61,4 +61,14 @@ export class CreateReviewComponent {
       },
     });
   }
+
+  /**
+   * Causes the return to review creation form when the
+   * Create Another Review button or the Try again button
+   * is clicked.
+   */
+  goBackToForm() {
+    this.form.reset();
+    this.reviewCreationStatus.message = 'Not attempted yet';
+  }
 }

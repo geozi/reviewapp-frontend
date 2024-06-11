@@ -29,7 +29,7 @@ export class BaseReviewService {
    * Checks the validity of a token.
    */
   checkTokenValidity() {
-    if (!this.tokenService.isValid(this.accessToken)) {
+    if (this.accessToken && !this.tokenService.isValid(this.accessToken)) {
       this.authService.logoutUser();
     }
   }

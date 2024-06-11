@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { ReviewService } from 'src/app/shared/services/review.service';
 import { ReviewItem } from 'src/app/shared/interfaces/review-item';
+import { Router } from '@angular/router';
 
 /**
  * Component responsible for formatting persisted reviews
@@ -17,6 +18,7 @@ import { ReviewItem } from 'src/app/shared/interfaces/review-item';
 })
 export class DataCardComponent {
   @Input() data: ReviewItem[];
+  router = inject(Router);
 
   reviewService = inject(ReviewService);
 
@@ -35,6 +37,7 @@ export class DataCardComponent {
             deletedReview.description +
             '} deleted'
         );
+        window.location.reload();
       },
       error: (response) => {
         console.log(response.error.message);

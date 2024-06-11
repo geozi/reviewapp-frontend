@@ -53,10 +53,24 @@
     <strong>Success:</strong>
     {{ reviewCreationStatus.message }}
   </div>
+  <button
+    mat-flat-button
+    color="primary"
+    class="mt-2"
+    (click)="goBackToForm()">
+    Create Another Review
+  </button>
   } @else {
   <div class="alert alert-danger mt-2">
     <strong>Error:</strong>
     {{ reviewCreationStatus.message }}
   </div>
+  <button
+    mat-flat-button
+    color="primary"
+    class="mt-2"
+    (click)="goBackToForm()">
+    Try Again
+  </button>
   } }
 </div>

@@ -35,6 +35,7 @@ export class LoginFormComponent {
   router = inject(Router);
 
   invalidLogin = false;
+  invalidLoginMessage = '';
 
   form = new FormGroup({
     username: new FormControl('', Validators.required),
@@ -62,8 +63,9 @@ export class LoginFormComponent {
         this.form.reset();
       },
       error: (response) => {
-        console.error('Login Error', response);
+        this.invalidLoginMessage = response.error.message;
         this.invalidLogin = true;
+        console.error('Login Error', this.invalidLoginMessage);
       },
     });
   }
@@ -73,5 +75,12 @@ export class LoginFormComponent {
    */
   onRegister() {
     this.router.navigate(['register-form']);
+  }
+
+  /**
+   * Called when the Try again button is clicked.
+   */
+  goBackToLogin() {
+    this.invalidLogin = false;
   }
 }

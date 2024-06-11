@@ -1,4 +1,5 @@
 <h4>User login</h4>
+@if(invalidLogin === false) {
 <form
   [formGroup]="form"
   class="d-flex flex-column">
@@ -41,3 +42,16 @@
     </button>
   </div>
 </form>
+} @else {
+<div class="alert alert-danger mt-2">
+  <strong>Login Error:</strong>
+  {{ invalidLoginMessage }}
+</div>
+<button
+  mat-flat-button
+  color="primary"
+  class="mt-2"
+  (click)="goBackToLogin()">
+  Try Again
+</button>
+}
