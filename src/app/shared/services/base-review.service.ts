@@ -17,7 +17,7 @@ export class BaseReviewService {
   authService = inject(AuthService);
   tokenService = inject(TokenService);
 
-  accessToken = this.tokenService.getToken();
+  accessToken = '';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -29,8 +29,21 @@ export class BaseReviewService {
    * Checks the validity of a token.
    */
   checkTokenValidity() {
-    if (this.accessToken && !this.tokenService.isValid(this.accessToken)) {
-      this.authService.logoutUser();
+    this.accessToken = this.tokenService.getToken();
+
+    if (!this.accessToken) {
+      console.log('No token found');
+    } else {
+      if (this.tokenService.isValid(this.accessToken)) {
+        console.log('Token is valid');
+        this.httpOptions.headers = this.httpOptions.headers.set(
+          'Authorization',
+          `Bearer ${this.accessToken}`
+        );
+      } else {
+        console.log('Token expired. Logging out user');
+        this.authService.logoutUser();
+      }
     }
   }
 }

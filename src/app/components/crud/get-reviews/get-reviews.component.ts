@@ -25,7 +25,6 @@ export class GetReviewsComponent implements OnInit {
 
   ngOnInit(): void {
     this.reviewService.checkTokenValidity();
-
     const accessToken = this.tokenService.getToken();
     const username = jwtDecode(accessToken).sub as string;
     this.refreshReviewItems(username);

@@ -38,8 +38,6 @@ export class ReviewService extends BaseReviewService {
    * @returns An observable representing the HTTP response from the backend.
    */
   getReviewsByUsername(username: string): Observable<any> {
-    this.checkTokenValidity();
-
     const url = `${API_URL}/reviews-by-username?username=${username}`;
     return this.http.get(url, this.httpOptions);
   }

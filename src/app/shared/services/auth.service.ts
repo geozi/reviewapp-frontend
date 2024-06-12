@@ -29,7 +29,6 @@ export class AuthService {
   router = inject(Router);
 
   constructor() {
-    // After refresh, keep user logged in
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
       const decodedTokenSubject = jwtDecode(accessToken).sub as string;

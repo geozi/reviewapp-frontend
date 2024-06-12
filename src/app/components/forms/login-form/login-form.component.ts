@@ -43,7 +43,8 @@ export class LoginFormComponent {
   });
 
   /**
-   * Called when the Submit button is clicked.
+   * Retrieves user information and forwards it
+   * to the AuthService API.
    */
   onSubmit() {
     const credentials = this.form.value as Credentials;
@@ -71,14 +72,14 @@ export class LoginFormComponent {
   }
 
   /**
-   * Called when the Register button is clicked.
+   * Navigates to the register form.
    */
   onRegister() {
     this.router.navigate(['register-form']);
   }
 
   /**
-   * Called when the Try again button is clicked.
+   * Resets the component's viewing logic.
    */
   goBackToLogin() {
     this.invalidLogin = false;

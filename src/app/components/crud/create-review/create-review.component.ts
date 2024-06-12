@@ -45,12 +45,13 @@ export class CreateReviewComponent {
   });
 
   /**
-   * Creates a review object when the Add button is clicked.
-   * @param value The user information filled in the template.
+   * Retrieves new review information and forwards it to
+   * the ReviewService API.
+   * @param value The new review information.
    */
   onSubmit(value: any) {
     const review = value as Review;
-    console.log(review);
+
     this.reviewService.createReview(review).subscribe({
       next: (response) => {
         this.reviewCreationStatus = { success: true, message: 'Review added' };
@@ -63,9 +64,7 @@ export class CreateReviewComponent {
   }
 
   /**
-   * Causes the return to review creation form when the
-   * Create Another Review button or the Try again button
-   * is clicked.
+   * Clears the review creation form and resets the component's viewing logic.
    */
   goBackToForm() {
     this.form.reset();

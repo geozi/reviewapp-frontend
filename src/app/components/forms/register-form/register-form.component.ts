@@ -65,8 +65,9 @@ export class RegisterFormComponent {
   }
 
   /**
-   * Called when the Register button is clicked.
-   * @param value The information of the user to be registered.
+   * Retrieves user registration information and forwards it
+   * to the UserService API.
+   * @param value The information of the new user.
    */
   onSubmit(value: any) {
     const user = value as User;
@@ -85,8 +86,8 @@ export class RegisterFormComponent {
   }
 
   /**
-   * Clears the registration form when the Register
-   * Another User button is clicked.
+   * Clears the registration form and
+   * resets the component's viewing logic.
    */
   registerAnotherUser() {
     this.form.reset();
