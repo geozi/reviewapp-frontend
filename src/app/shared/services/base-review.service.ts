@@ -35,7 +35,6 @@ export class BaseReviewService {
       console.log('No token found');
     } else {
       if (this.tokenService.isValid(this.accessToken)) {
-        console.log('Token is valid');
         this.httpOptions.headers = this.httpOptions.headers.set(
           'Authorization',
           `Bearer ${this.accessToken}`

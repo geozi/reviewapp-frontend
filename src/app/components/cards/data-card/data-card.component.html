@@ -7,7 +7,13 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <p class="text-wrap">{{ row.description }}</p>
+      <p class="text-wrap text-start mt-3">{{ row.description }}</p>
+      <p class="text-start">
+        Added on {{ row.created.getDate() }}/{{ row.created.getMonth() + 1 }}/{{
+          row.created.getFullYear()
+        }}
+        at {{ row.created.getHours() }}:{{ row.created.getMinutes() }}
+      </p>
     </mat-card-content>
     <mat-card-actions>
       <button

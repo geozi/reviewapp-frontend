@@ -29,14 +29,15 @@ export class DataCardComponent {
   deleteReviewItem(id: string) {
     this.reviewService.deleteReviewById(id).subscribe({
       next: (response) => {
-        const deletedReview = response as ReviewItem;
-        console.log(
-          'Review: {subject: ' +
-            deletedReview.subject +
-            ', description: ' +
-            deletedReview.description +
-            '} deleted'
-        );
+        // const deletedReview = response as ReviewItem;
+        // console.log(
+        //   'Review: {subject: ' +
+        //     deletedReview.subject +
+        //     ', description: ' +
+        //     deletedReview.description +
+        //     '} deleted'
+        // );
+
         window.location.reload();
       },
       error: (response) => {

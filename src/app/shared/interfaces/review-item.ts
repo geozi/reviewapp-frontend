@@ -4,6 +4,7 @@
  * @property {username} username - The username of the user adding the review.
  * @property {string} subject - The subject of the review.
  * @property {string} description - The main body of the review.
+ * @property {Date} created - The date the review was added.
  * @author geozi
  * @version 1
  */
@@ -12,4 +13,5 @@ export interface ReviewItem {
   username: string;
   subject: string;
   description: string;
+  created: Date;
 }

@@ -31,18 +31,23 @@ export class GetReviewsComponent implements OnInit {
   }
 
   /**
-   * Repeats the GET method for reviews.
+   * Repeats the GET method for reviews and sorts
+   * the results.
    * @param username The username of the user.
    */
   refreshReviewItems(username: string) {
     this.reviewService.getReviewsByUsername(username).subscribe({
       next: (response) => {
         const reviews = response as Array<ReviewItem>;
+        const sortedReviews = reviews.sort((a, b) =>
+          a.created > b.created ? -1 : 1
+        );
 
-        this.data = reviews.map((review) => ({
+        this.data = sortedReviews.map((review) => ({
           id: review.id,
           subject: review.subject,
           description: review.description,
+          created: new Date(review.created),
         }));
       },
       error: (response) => {
