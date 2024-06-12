@@ -4,15 +4,24 @@
 ### About the project
 This repository contains the frontend implementation of my final project for the [Coding Factory](https://codingfactory.aueb.gr/) training program. The project is a fullstack implementation of a generic review app. A user can register, log in, and post a review that is persisted on MongoDB Atlas. 
 
+
+### Screenshots
+
+
+![screenshots](https://github.com/geozi/reviewapp-frontend/assets/153010644/ba72fc1b-879f-49d6-8ed7-48265ce8db50)
+
+
 ### Angular component architecture
 
 ![review_app_frontend](https://github.com/geozi/reviewapp-frontend/assets/153010644/f3e6f98c-74a6-4d21-bbf6-0647ad7699de)
+
 
 ### Prerequisites
 
 * Node.js,
 * Angular CLI,
 * VS Code or any Editor/IDE of your choice
+
 
 ### Dependencies
 
