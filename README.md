@@ -18,7 +18,7 @@ This repository contains the frontend implementation of my final project for the
 
 ### Prerequisites
 
-* Node.js,
+* Node.js (v20.11.1 or higher),
 * Angular CLI,
 * VS Code or any Editor/IDE of your choice
 
